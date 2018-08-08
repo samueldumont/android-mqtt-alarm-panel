@@ -38,14 +38,14 @@
 
     <!-- Preferences -->
     <string name="preference_summary_security_code">Définissez un code d'alarme (1234 par défaut).</string>
-    <string name="preference_title_security_code">Security Code</string>
+    <string name="preference_title_security_code">Code de sécurité</string>
     <string name="preference_title_mqtt_server">MQTT</string>
-    <string name="preference_summary_mqtt_server">Set the values for the MQTT service</string>
-    <string name="preference_title_broker">MQTT Broker</string>
-    <string name="preference_summary_broker">Set MQTT broker service address. For tcp/ssl exclude the prefix (192.168.1.1). For others, include the prefix (http://192.168.1.1).</string>
-    <string name="preference_client_id">Client Id</string>
-    <string name="preference_summary_client_id">Set the client Id if required by service.</string>
-    <string name="preference_tls_connection">SSL/TLS Connection</string>
+    <string name="preference_summary_mqtt_server">Configurez les valeurs du service MQTT</string>
+    <string name="preference_title_broker">Broker MQTT</string>
+    <string name="preference_summary_broker">Configurez l'adresse du service MQTT. Pour tcp/ssl, ignorez le préfixe (192.168.1.1). Pour le reste, ajoutez le préfixe (http://192.168.1.1).</string>
+    <string name="preference_client_id">Identifiant client</string>
+    <string name="preference_summary_client_id">Définissez l'identifiant client si nécessaire.</string>
+    <string name="preference_tls_connection">Connection SSL/TLS</string>
     <string name="preference_summary_tls_connection">Listen to broker on port 8883 with SSL/TLS.</string>
     <string name="preference_title_port">Service Port</string>
     <string name="preference_summary_port">Set the service port value, usually 8123 unless secure.</string>
@@ -53,19 +53,19 @@
     <string name="preference_title_state_topic">Alarm Topic</string>
     <string name="preference_summary_command_topic">Set the command topic value to send commands to the MQTT service.</string>
     <string name="preference_summary_state_topic">Set the state topic value to receive messages from the MQTT service.</string>
-    <string name="preference_title_username">Username</string>
-    <string name="preference_summary_username">Set the service username (if needed).</string>
-    <string name="preference_title_password">Password</string>
-    <string name="preference_summary_password">Set the service password (if needed).</string>
-    <string name="preference_title_alarm">Alarm</string>
-    <string name="preference_summary_alarm">Alarm code settings</string>
+    <string name="preference_title_username">Nom d'utilisateur</string>
+    <string name="preference_summary_username">Définissez le nom d'utilisateur pour le service (si nécessaire).</string>
+    <string name="preference_title_password">Mot de passe</string>
+    <string name="preference_summary_password">Définissez le mot de passe pour le service (si nécessaire).</string>
+    <string name="preference_title_alarm">Alarme</string>
+    <string name="preference_summary_alarm">Paramètres du code d'alarme</string>
     <string name="preference_title_pending_time">Pending Time</string>
     <string name="preference_summary_pending_time">The time in seconds of the pending time before the alarm is armed away or home). Currently %1$s seconds.</string>
     <string name="preference_title_trigger_time">Trigger Time</string>
     <string name="preference_summary_trigger_time">The time in seconds before triggering the alarm. Currently %1$s seconds.</string>
 
-    <string name="preference_title_weather_settings">Weather</string>
-    <string name="preference_summary_weather_settings">Once activated, the weather settings will appear on the main screen.</string>
+    <string name="preference_title_weather_settings">Météo</string>
+    <string name="preference_summary_weather_settings">Une fois activé, les prévisions météo apparaîtront sur l'écran principal.</string>
     <string name="preference_title_darksky">DarkSky</string>
     <string name="preference_summary_darksky">Activate the weather module using the DarkSky service.</string>
     <string name="preference_title_darksky_api">API Secret</string>
