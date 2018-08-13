@@ -25,10 +25,8 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v14.preference.SwitchPreference
 import android.support.v4.app.ActivityCompat
-import android.support.v7.preference.EditTextPreference
-import android.support.v7.preference.ListPreference
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.preference.*
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
@@ -37,6 +35,7 @@ import com.thanksmister.iot.mqtt.alarmpanel.BaseActivity
 import com.thanksmister.iot.mqtt.alarmpanel.R
 import com.thanksmister.iot.mqtt.alarmpanel.persistence.Configuration
 import com.thanksmister.iot.mqtt.alarmpanel.ui.activities.LiveCameraActivity
+import com.thanksmister.iot.mqtt.alarmpanel.ui.activities.SettingsActivity
 import com.thanksmister.iot.mqtt.alarmpanel.utils.CameraUtils
 import com.thanksmister.iot.mqtt.alarmpanel.utils.DialogUtils
 import dagger.android.support.AndroidSupportInjection
@@ -84,7 +83,6 @@ class CameraSettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnS
         fpsPreference!!.summary = getString(R.string.pref_camera_fps_summary, configuration.cameraFPS.toInt().toString())
 
         cameraListPreference = findPreference(getString(R.string.key_setting_camera_cameraid)) as ListPreference
-        cameraListPreference!!.isEnabled = false
         cameraListPreference!!.setOnPreferenceChangeListener { preference, newValue ->
             if (preference is ListPreference) {
                 val index = preference.findIndexOfValue(newValue.toString())
@@ -95,14 +93,23 @@ class CameraSettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnS
                             "")
 
                 if(index >= 0) {
-                    configuration.cameraId = index
+                    //configuration.cameraId = index
                     Timber.d("Camera Id: " + configuration.cameraId)
+                    configuration.cameraId = index
                 }
             }
             true;
         }
+        cameraListPreference!!.isEnabled = false
 
-        createCameraList()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(activity!!.applicationContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                createCameraList()
+            }
+        } else {
+            createCameraList()
+        }
+
 
         cameraTestPreference = findPreference("button_key_camera_test")
         cameraTestPreference!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { preference ->
@@ -143,8 +150,34 @@ class CameraSettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (ActivityCompat.checkSelfPermission(activity as BaseActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 configuration.cameraEnabled = false
-                dialogUtils.showAlertDialog(activity as BaseActivity, getString(R.string.dialog_no_camera_permissions))
+                requestCameraPermissions()
+                //dialogUtils.showAlertDialog(activity as BaseActivity, getString(R.string.dialog_no_camera_permissions))
                 return
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            SettingsActivity.PERMISSIONS_REQUEST_CAMERA -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    createCameraList()
+                } else {
+                    configuration.cameraEnabled = false
+                    cameraPreference!!.isChecked = false
+                }
+            }
+        }
+    }
+
+    private fun requestCameraPermissions() {
+        Timber.d("requestCameraPermissions")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Timber.d("requestCameraPermissions asking")
+            if (PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(activity!!,
+                        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE),
+                        SettingsActivity.PERMISSIONS_REQUEST_CAMERA)
             }
         }
     }
@@ -202,7 +235,42 @@ class CameraSettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnS
         }
     }
 
+    private val bindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
+        val stringValue = value.toString()
+        if (preference is SwitchPreference) {
+            return@OnPreferenceChangeListener true
+        }else if (preference is ListPreference) {
+            val index = preference.findIndexOfValue(stringValue)
+            preference.setSummary(
+                    if (index >= 0)
+                        preference.entries[index]
+                    else null)
+        } else {
+            preference.summary = stringValue
+        }
+        true
+    }
+
+    fun bindPreferenceSummaryToValue(preference: Preference) {
+        preference.onPreferenceChangeListener = bindPreferenceSummaryToValueListener
+        if (preference is SwitchPreference) {
+            bindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                    PreferenceManager
+                            .getDefaultSharedPreferences(preference.getContext())
+                            .getBoolean(preference.getKey(), false))
+        } else {
+            bindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                    PreferenceManager
+                            .getDefaultSharedPreferences(preference.context)
+                            .getString(preference.key, "")!!)
+        }
+    }
+
     private fun startCameraTest(c: Context) {
         startActivity(Intent(c, LiveCameraActivity::class.java))
+    }
+
+    companion object {
+        const val PERMISSIONS_REQUEST_CAMERA = 201
     }
 }

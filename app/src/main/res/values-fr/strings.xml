@@ -19,33 +19,33 @@
 
 
     <!-- Menus -->
-    <string name="action_settings">Settings</string>
-    <string name="action_publish">Publish</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_publish">Publier</string>
 
     <!-- Buttons -->
 
     <!-- Toasts, Alerts, Errors -->
-    <string name="toast_code_match">Alarm code matches current code, enter a different code.</string>
-    <string name="toast_code_alarm_set">Alarm has been set!</string>
-    <string name="toast_code_unchanged">Alarm code unchanged!</string>
-    <string name="toast_code_changed">Alarm code changed successfully!</string>
-    <string name="toast_code_not_match">Code does not match, try again.</string>
-    <string name="toast_code_invalid">Code is invalid, please try again.</string>
+    <string name="toast_code_match">Alarm code matches current code, veuillez entrer un code différent.</string>
+    <string name="toast_code_alarm_set">L'alarme a été définie!</string>
+    <string name="toast_code_unchanged">Le code d'alarme est inchangé!</string>
+    <string name="toast_code_changed">Le code d'alarme a été changé avec succès!</string>
+    <string name="toast_code_not_match">Code non correspondant, veuillez réessayer.</string>
+    <string name="toast_code_invalid">Code invalide, veuillez réessayer.</string>
 
     <!-- Text Content -->
-    <string name="text_enter_alarm_code_title">Enter a new alarm code</string>
-    <string name="text_renter_alarm_code_title">Please enter the new code again to verify</string>
+    <string name="text_enter_alarm_code_title">Entrez un nouveau code d'alarme</string>
+    <string name="text_renter_alarm_code_title">Veuillez vérifier le code une seconde fois</string>
 
     <!-- Preferences -->
-    <string name="preference_summary_security_code">Set the alarm system code (default is 1234).</string>
-    <string name="preference_title_security_code">Security Code</string>
+    <string name="preference_summary_security_code">Définissez un code d'alarme (1234 par défaut).</string>
+    <string name="preference_title_security_code">Code de sécurité</string>
     <string name="preference_title_mqtt_server">MQTT</string>
-    <string name="preference_summary_mqtt_server">Set the values for the MQTT service</string>
-    <string name="preference_title_broker">MQTT Broker</string>
-    <string name="preference_summary_broker">Set MQTT broker service address. For tcp/ssl exclude the prefix (192.168.1.1). For others, include the prefix (http://192.168.1.1).</string>
-    <string name="preference_client_id">Client Id</string>
-    <string name="preference_summary_client_id">Set the client Id if required by service.</string>
-    <string name="preference_tls_connection">SSL/TLS Connection</string>
+    <string name="preference_summary_mqtt_server">Configurez les valeurs du service MQTT</string>
+    <string name="preference_title_broker">Broker MQTT</string>
+    <string name="preference_summary_broker">Configurez l'adresse du service MQTT. Pour tcp/ssl, ignorez le préfixe (192.168.1.1). Pour le reste, ajoutez le préfixe (http://192.168.1.1).</string>
+    <string name="preference_client_id">Identifiant client</string>
+    <string name="preference_summary_client_id">Définissez l'identifiant client si nécessaire.</string>
+    <string name="preference_tls_connection">Connection SSL/TLS</string>
     <string name="preference_summary_tls_connection">Listen to broker on port 8883 with SSL/TLS.</string>
     <string name="preference_title_port">Service Port</string>
     <string name="preference_summary_port">Set the service port value, usually 8123 unless secure.</string>
@@ -53,19 +53,19 @@
     <string name="preference_title_state_topic">Alarm Topic</string>
     <string name="preference_summary_command_topic">Set the command topic value to send commands to the MQTT service.</string>
     <string name="preference_summary_state_topic">Set the state topic value to receive messages from the MQTT service.</string>
-    <string name="preference_title_username">Username</string>
-    <string name="preference_summary_username">Set the service username (if needed).</string>
-    <string name="preference_title_password">Password</string>
-    <string name="preference_summary_password">Set the service password (if needed).</string>
-    <string name="preference_title_alarm">Alarm</string>
-    <string name="preference_summary_alarm">Alarm code settings</string>
+    <string name="preference_title_username">Nom d'utilisateur</string>
+    <string name="preference_summary_username">Définissez le nom d'utilisateur pour le service (si nécessaire).</string>
+    <string name="preference_title_password">Mot de passe</string>
+    <string name="preference_summary_password">Définissez le mot de passe pour le service (si nécessaire).</string>
+    <string name="preference_title_alarm">Alarme</string>
+    <string name="preference_summary_alarm">Paramètres du code d'alarme</string>
     <string name="preference_title_pending_time">Pending Time</string>
     <string name="preference_summary_pending_time">The time in seconds of the pending time before the alarm is armed away or home). Currently %1$s seconds.</string>
     <string name="preference_title_trigger_time">Trigger Time</string>
     <string name="preference_summary_trigger_time">The time in seconds before triggering the alarm. Currently %1$s seconds.</string>
 
-    <string name="preference_title_weather_settings">Weather</string>
-    <string name="preference_summary_weather_settings">Once activated, the weather settings will appear on the main screen.</string>
+    <string name="preference_title_weather_settings">Météo</string>
+    <string name="preference_summary_weather_settings">Une fois activé, les prévisions météo apparaîtront sur l'écran principal.</string>
     <string name="preference_title_darksky">DarkSky</string>
     <string name="preference_summary_darksky">Activate the weather module using the DarkSky service.</string>
     <string name="preference_title_darksky_api">API Secret</string>
@@ -364,17 +364,17 @@
     <string name="progress_loading">Loading %1$s %%</string>
     <string name="pref_title_prevent_sleep">Prevent Screen Sleep</string>
     <string name="pref_summary_prevent_sleep">When active, keeps the screen on.</string>
-    <string name="dialog_title_ssl_error">SSL Certificate Error</string>
+    <string name="dialog_title_ssl_error">Erreur de certificat SSL/TLS.</string>
     <string name="dialog_message_ssl_continue">Do you want to continue anyway?</string>
     <string name="dialog_message_ssl_not_yet_valid">The certificate is not yet valid.</string>
     <string name="dialog_message_ssl_mismatch">The certificate Hostname is mismatched.</string>
-    <string name="dialog_message_ssl_expired">The certificate has expired.</string>
-    <string name="dialog_message_ssl_untrusted">The certificate authority is not trusted.</string>
-    <string name="dialog_message_ssl_generic">SSL certificate error.</string>
+    <string name="dialog_message_ssl_expired">Le certificat a expiré.</string>
+    <string name="dialog_message_ssl_untrusted">L'autorité de certification n'est pas de confiance.</string>
+    <string name="dialog_message_ssl_generic">Erreur de certificat SSL/TLS.</string>
 
     <string-array name="inactivity_times">
-        <item>15 seconds</item>
-        <item>30 seconds</item>
+        <item>15 secondes</item>
+        <item>30 secondes</item>
         <item>1 minute</item>
         <item>2 minutes</item>
         <item>3 minutes</item>
@@ -384,35 +384,35 @@
     </string-array>
 
     <string-array name="timeout_times">
-        <item>15 seconds</item>
-        <item>30 seconds</item>
+        <item>15 secondes</item>
+        <item>30 secondes</item>
         <item>1 minute</item>
         <item>2 minutes</item>
         <item>3 minutes</item>
         <item>5 minutes</item>
         <item>10 minutes</item>
         <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>12 hours</item>
-        <item>24 hours</item>
+        <item>1 heure</item>
+        <item>2 heures</item>
+        <item>3 heures</item>
+        <item>6 heures</item>
+        <item>12 heures</item>
+        <item>24 heures</item>
     </string-array>
 
     <string-array name="flip_directions">
-        <item>None</item>
-        <item>Rotate Left</item>
-        <item>Rotate Right</item>
-        <item>Flip Vertical</item>
+        <item>Aucune</item>
+        <item>Rotation à gauche</item>
+        <item>Rotation à droite</item>
+        <item>Retourner vericalement</item>
     </string-array>
 
     <string-array name="sensor_types">
-        <item>Generic</item>
-        <item>Door</item>
-        <item>Window</item>
-        <item>Sound</item>
-        <item>Motion</item>
+        <item>Generique</item>
+        <item>Porte</item>
+        <item>Fenêtre</item>
+        <item>Bruit</item>
+        <item>Mouvement</item>
         <item>Camera</item>
     </string-array>
 

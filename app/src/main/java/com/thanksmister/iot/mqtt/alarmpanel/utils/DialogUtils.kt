@@ -126,6 +126,18 @@ class DialogUtils(base: Context?) : ContextWrapper(base), LifecycleObserver {
                 .show()
     }
 
+    fun showAlertDialog(context: Context, title: String, message: String, onPositiveButton: DialogInterface.OnClickListener,
+                        onNegativeButton: DialogInterface.OnClickListener) {
+        hideAlertDialog()
+        Timber.d("showAlertDialog")
+        alertDialog = AlertDialog.Builder(context, R.style.CustomAlertDialog)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, onPositiveButton)
+                .setNegativeButton(android.R.string.cancel, onNegativeButton)
+                .show()
+    }
+
     fun showAlertDialogCancel(context: Context, message: String, onClickListener: DialogInterface.OnClickListener) {
         hideAlertDialog()
         Timber.d("showAlertDialog")
@@ -295,26 +307,6 @@ class DialogUtils(base: Context?) : ContextWrapper(base), LifecycleObserver {
             screenSaverDialog!!.window.addFlags( WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON )
         }
     }
-
-    /*fun showCameraTestView(activity: AppCompatActivity, cameraId: Int, processingInterval: Long, motionDetection: Boolean,
-                           faceDetection: Boolean, qrCodeEnabled: Boolean, motionMinLuma: Int, motionLeniency: Int) {
-        clearDialogs() // clear any alert dialogs
-        val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_camera_test, null, false)
-        val cameraTestView = view.findViewById<CameraDialogView>(R.id.cameraTestView)
-        cameraTestView.init(cameraId, processingInterval, motionDetection ,faceDetection, qrCodeEnabled,
-                motionMinLuma, motionLeniency, object: CameraDialogView.OnCameraDialogListener{
-            override fun onClose() {
-                clearDialogs()
-            }
-        })
-        val displayRectangle = Rect()
-        val window = activity.window
-        window.decorView.getWindowVisibleDisplayFrame(displayRectangle)
-        //view.minimumWidth = (displayRectangle.width() * 0.9f).toInt()
-        view.minimumHeight = (displayRectangle.height() * 0.8f).toInt()
-        dialog = buildImmersiveDialog(activity, true, cameraTestView, false)
-    }*/
 
     // immersive dialogs without navigation
     // https://stackoverflow.com/questions/22794049/how-do-i-maintain-the-immersive-mode-in-dialogs
